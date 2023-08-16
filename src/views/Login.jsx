@@ -39,8 +39,13 @@ const Login = () => {
   }
   return (
     <>
-      <LoginForm onSubmit={handleSubmit} />
-      { message && <p className="message error">{ message }</p>}
+      <div className="center">
+        <div>
+          <h1>Login</h1>
+          <LoginForm onSubmit={handleSubmit} />
+          {message && <p className="error">{message}</p>}
+        </div>
+      </div>
     </>
   )
 }

@@ -4,7 +4,7 @@
 }
 
 .bg-vite {
-  background-color: rgba(var(--main-vite-rgb), 0.1)
+  background-color: rgba(var(--main-vite-rgb), 0.1);
 }
 
 .logo {
@@ -31,7 +31,9 @@ header > *:last-child {
   align-self: end;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   box-sizing: border-box;
   margin: 0;
   font-weight: normal;
@@ -42,7 +44,7 @@ nav {
 }
 
 nav > * {
-  padding: 0 .5rem;
+  padding: 0 0.5rem;
 }
 nav > *.active {
   background-color: white;
@@ -89,8 +91,6 @@ nav.sub-nav > *.active {
   color: #888;
 }
 
-
-
 .products {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -124,10 +124,6 @@ nav.sub-nav > *.active {
   height: 2rem;
   font-size: 1.2rem;
   padding: 0 4px;
-}
-
-.message {
-  text-align: center;
 }
 
 .error {
@@ -178,4 +174,10 @@ label {
   color: #555;
   font-size: 1.2rem;
   margin-left: 1rem;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

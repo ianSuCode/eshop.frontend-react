@@ -10,6 +10,7 @@ import Cart from './views/Cart'
 import Account from './views/Account'
 import Profile from './views/Profile'
 import Orders from './views/Orders'
+import Signup from './views/Signup'
 import Login from './views/Login'
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
               <a onClick={logout}>Logout</a>
             </>
             : <>
+              <NavLink to="/user/signup">Signup</NavLink>
               <NavLink to="/auth/login">Login</NavLink>
             </>
           }
@@ -63,6 +65,7 @@ function App() {
             <Route path="profile" element={<Profile />} />
             <Route path="orders" element={<Orders />} />
           </Route>
+          <Route path="user/signup" element={<Signup />} ></Route>
           <Route path="auth/login" element={<Login />} ></Route>
         </Routes>
       </main>
