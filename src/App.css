@@ -92,6 +92,7 @@ nav.sub-nav > *.active {
 }
 
 .products {
+  margin-top: 1rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
