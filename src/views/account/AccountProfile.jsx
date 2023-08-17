@@ -1,4 +1,4 @@
-import { useAuth } from '../hooks'
+import { useAuth } from '../../hooks'
 
 const Profile = () => {
   const { userInfo } = useAuth()

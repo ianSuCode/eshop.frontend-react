@@ -1,20 +1,27 @@
 import { useState, useEffect } from 'react'
-import fetchHelper from '../helpers/fetchHelper'
 import { Link } from 'react-router-dom'
+import fetchHelper from '../../helpers/fetchHelper'
+import { useAuth } from '../../hooks'
 
 const Orders = () => {
   const [orders, setOrders] = useState([])
+  const [loading, setLoading] = useState(true)
+  const { logout } = useAuth()
+
   useEffect(() => {
-    async function fetchData() {
+    const fetchData = async () => {
       try {
         const data = await fetchHelper.get('order')
         setOrders(data)
+        setLoading(false)
       } catch (error) {
         console.error('Error fetching data:', error)
+        logout()
       }
     }
     fetchData()
-  }, [])
+  }, [logout])
+
   const dusplayDateTime = text => {
     return text.substring(0, 19).replaceAll('-', '/').replace('T', ' ')
   }
@@ -23,6 +30,11 @@ const Orders = () => {
     if (typeof id === 'string' && id.length > 6) return id.substring(0, 6) + '...'
     return id
   }
+
+  if (loading) {
+    return <div>Loading...</div>
+  }
+
   return (
     <table className="orders">
       <thead>

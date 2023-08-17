@@ -19,7 +19,7 @@ const getFetchOption = (method, payload) => {
 const checkResponse = (res) => {
   if (res.status === 401) {
     throw new Error('Unauthorized')
-  } 
+  }
 }
 
 export default {

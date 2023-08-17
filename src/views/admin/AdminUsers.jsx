@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
 import fetchHelper from '../../helpers/fetchHelper'
+import { useAuth } from '../../hooks'
 
 const AdminUsers = () => {
   const [users, setUsers] = useState(null)
   const [loading, setLoading] = useState(true)
-  
+  const { logout } = useAuth()
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -13,11 +15,11 @@ const AdminUsers = () => {
         setLoading(false)
       } catch (error) {
         console.error('Error fetching data:', error)
-        setLoading(false)
+        logout()
       }
     }
     fetchData()
-  }, [])
+  }, [logout])
 
   const dusplayDateTime = text => {
     return text.substring(0, 19).replaceAll('-', '/').replace('T', ' ')
@@ -41,7 +43,7 @@ const AdminUsers = () => {
     try {
       await fetchHelper.patch('admin/user/active', { id: user.id, active: !user.active })
       user.active = !user.active
-      setUsers(users.map(it => it === user.id ? {...it, active: !user.active} : it))
+      setUsers(users.map(it => it === user.id ? { ...it, active: !user.active } : it))
     } catch (error) {
       console.error(error)
     }
@@ -73,8 +75,8 @@ const AdminUsers = () => {
               <td>
                 <div className="switch-container">
                   <input type="checkbox" id={`toggle-switch-${user.id}`} className="toggle-input"
-                    onChange={() => handleAcitveChange(user)} 
-                    checked={user.active}/>
+                    onChange={() => handleAcitveChange(user)}
+                    checked={user.active} />
                   <label htmlFor={`toggle-switch-${user.id}`} className="toggle-label"></label>
                 </div>
               </td>

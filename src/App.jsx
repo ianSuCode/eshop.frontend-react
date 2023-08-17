@@ -8,13 +8,14 @@ import ProductList from './views/ProductList'
 import ProductDetail from './views/ProductDetail'
 import Cart from './views/Cart'
 import Account from './views/Account'
-import Profile from './views/Profile'
-import Orders from './views/Orders'
+import Profile from './views/account/AccountProfile'
+import Orders from './views/account/AccountOrders'
 import Signup from './views/Signup'
 import Login from './views/Login'
 import Admin from './views/Admin'
 import AdminUsers from './views/admin/AdminUsers'
 import AdminOrders from './views/admin/adminOrders'
+import { ProtectedRoute, AdminRoute } from './routes'
 
 function App() {
   const { userInfo, accessToken, logout, retrieveUserInfo } = useAuth()
@@ -34,7 +35,7 @@ function App() {
       return (
         <NavLink to="/admin">Admin</NavLink>
       )
-    } 
+    }
   }
 
   return (
@@ -69,19 +70,19 @@ function App() {
       </header>
       <main>
         <Routes>
-          <Route index  element={<Home />} />
+          <Route index element={<Home />} />
           <Route path="product">
             <Route path="" element={<ProductList />} />
             <Route path=":productId" element={<ProductDetail />} />
           </Route>
           <Route path="cart" element={<Cart />} ></Route>
-          <Route path="account"  element={<Account />} >
+          <Route path="account" element={<ProtectedRoute userInfo={userInfo}><Account /></ProtectedRoute>} >
             <Route path="profile" element={<Profile />} />
             <Route path="orders" element={<Orders />} />
           </Route>
           <Route path="user/signup" element={<Signup />} ></Route>
           <Route path="auth/login" element={<Login />} ></Route>
-          <Route path="admin"  element={<Admin />} >
+          <Route path="admin" element={<AdminRoute userInfo={userInfo}><Admin /></AdminRoute>} >
             <Route path="users" element={<AdminUsers />} />
             <Route path="orders" element={<AdminOrders />} />
           </Route>

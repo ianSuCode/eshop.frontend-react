@@ -1,23 +1,25 @@
 import { useState, useEffect } from 'react'
 import fetchHelper from '../../helpers/fetchHelper'
+import { useAuth } from '../../hooks'
 
 const AdminOrders = () => {
   const [orderGroups, setOrderGroups] = useState(null)
   const [loading, setLoading] = useState(true)
+  const { logout } = useAuth()
 
   useEffect(() => {
-    async function fetchData() {
+    const fetchData = async () => {
       try {
         const data = await fetchHelper.get('admin/order')
         setOrderGroups(data)
         setLoading(false)
       } catch (error) {
         console.error('Error fetching data:', error)
-        setLoading(false)
+        logout()
       }
     }
     fetchData()
-  }, [])
+  }, [logout])
 
   const handleStateChange = async (orderId, newState) => {
     const result = await fetchHelper.patch('admin/order/change-state', { id: orderId, state: newState })
