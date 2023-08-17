@@ -12,6 +12,9 @@ import Profile from './views/Profile'
 import Orders from './views/Orders'
 import Signup from './views/Signup'
 import Login from './views/Login'
+import Admin from './views/Admin'
+import AdminUsers from './views/admin/AdminUsers'
+import AdminOrders from './views/admin/adminOrders'
 
 function App() {
   const { userInfo, accessToken, logout, retrieveUserInfo } = useAuth()
@@ -23,6 +26,16 @@ function App() {
     }
   }
   init()
+
+  const isAdmin = userInfo?.roles?.includes('Admin')
+
+  const AdminPage = () => {
+    if (isAdmin) {
+      return (
+        <NavLink to="/admin">Admin</NavLink>
+      )
+    } 
+  }
 
   return (
     <>
@@ -42,6 +55,7 @@ function App() {
           <NavLink to="/product">Product</NavLink>
           {accessToken
             ? <>
+              {AdminPage()}
               <NavLink to="/cart">Cart ({cartItems.length})</NavLink>
               <NavLink to="/account">Account</NavLink>
               <a onClick={logout}>Logout</a>
@@ -67,6 +81,10 @@ function App() {
           </Route>
           <Route path="user/signup" element={<Signup />} ></Route>
           <Route path="auth/login" element={<Login />} ></Route>
+          <Route path="admin"  element={<Admin />} >
+            <Route path="users" element={<AdminUsers />} />
+            <Route path="orders" element={<AdminOrders />} />
+          </Route>
         </Routes>
       </main>
     </>

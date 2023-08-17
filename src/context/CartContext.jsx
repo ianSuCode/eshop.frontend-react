@@ -8,7 +8,6 @@ export const CartContext = createContext()
 const initialCartItems = []
 
 const cartReducer = (cartItems, action) => {
-  console.log(action)
   switch (action.type) {
     case 'SETUP':
       return action.items
@@ -21,8 +20,6 @@ const cartReducer = (cartItems, action) => {
       })
     case 'REMOVE':
       return cartItems.filter(item => item.product.id !== action.productId)
-
-    // Add more cases for other actions like removing items, clearing cart, etc.
     default:
       return cartItems
   }
