@@ -5,7 +5,7 @@ A frontend web created by React + Vite.
 + React Reducer and Context
 + Bearer Authentication
 + Roles and Permissions (Only users with the 'Admin' role can access/administer the Admin Dashboard)
-
+![](https://iansucode.github.io/assets/eshop/eshop-react.png)
 ## Features
 + User Registration: Users can sign up as new members and will await activation by an admin.
 + Token Expiration: Automatically redirect to the login page when the token expires.
