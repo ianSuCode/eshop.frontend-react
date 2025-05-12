@@ -14,7 +14,7 @@ import Signup from './views/Signup'
 import Login from './views/Login'
 import Admin from './views/Admin'
 import AdminUsers from './views/admin/AdminUsers'
-import AdminOrders from './views/admin/adminOrders'
+import AdminOrders from './views/admin/AdminOrders'
 import { ProtectedRoute, AdminRoute } from './routes'
 
 function App() {
